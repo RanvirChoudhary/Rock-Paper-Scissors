@@ -38,3 +38,16 @@ button:hover{
   font-size: 4em;
 }
 
+.countertitle{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+}
+
+.counter {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 0.8em;
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+}
+
