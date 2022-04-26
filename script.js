@@ -1,11 +1,14 @@
 const BtnRock = document.getElementById("BtnRock");
 const BtnScissors = document.getElementById("BtnScissors");
 const BtnPaper = document.getElementById("BtnPaper");
-const PlayerScore = document.getElementById("Player");
-const ComputerScore = document.getElementById("Computer");
+const PlayerCounter = document.getElementById("Player");
+const ComputerCounter = document.getElementById("Computer");
 const Modal = document.getElementById("myModal");
 const ModalTitle = document.getElementById("ModalTitle");
-const ModalMessage = document.getElementById("ModalMessage")
+const ModalMessage = document.getElementById("ModalMessage");
+const ModalClose = document.getElementById("close");
+
+console.log()
 
 function RandomGen(from, to){
   return Math.floor(Math.random() * to + from)
@@ -21,6 +24,25 @@ function SetRandom(RandGenOutput){
       return "Paper"
     default:
       return random
+  }
+}
+
+function Counter(WinLose){
+  let PlayerScore = Number(PlayerCounter.textContent);
+  let ComputerScore = Number(ComputerCounter.textContent);
+  if (WinLose === "PlayerWin"){
+    // PlayerScore = PlayerScore.textContent;
+    PlayerScore++;
+    PlayerCounter.textContent = PlayerScore;
+  }
+  if (WinLose === "PlayerLose"){
+    // ComputerScore = ComputerScore.textContent;
+    ComputerScore++;
+    ComputerCounter.textContent = ComputerScore;
+  }
+  if (WinLose === "Draw"){
+    // PlayerScore = PlayerScore.textContent;
+    // ComputerScore = ComputerScore.textContent;
   }
 }
 
@@ -64,16 +86,24 @@ function ModalHandler(ComputerChoice, WinLose){
 function AddEventListener(){
   BtnRock.addEventListener("click", e => {
     const pick = SetRandom(RandomGen(1,3))
-    ModalHandler(pick, VictoryHandler("Rock", pick));
+    const WinLose = VictoryHandler("Rock", pick); //so i dont have to call victory handler again and again
+    ModalHandler(pick, WinLose);
+    Counter(WinLose)
   })
   BtnScissors.addEventListener("click", e => {
-    ChooseRandom()
-    ModalHandler(random, VictoryHandler("Scissors", random));
+    const pick = SetRandom(RandomGen(1,3))
+    const WinLose = VictoryHandler("Scissors", pick);
+    ModalHandler(pick, WinLose);
+    Counter(WinLose);
   })
   BtnPaper.addEventListener("click", e => {
-    ChooseRandom()
-    ModalHandler(random, VictoryHandler("Paper", random));
+    const pick = SetRandom(RandomGen(1,3))
+    const WinLose = VictoryHandler("Paper", pick);
+    ModalHandler(pick, WinLose);
+    Counter(WinLose);
   })
-  
+  ModalClose.addEventListener("click", e => {
+    Modal.style.display = "none";
+  })
 }
 AddEventListener()
