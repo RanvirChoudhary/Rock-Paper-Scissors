@@ -79,7 +79,9 @@ function VictoryHandler(Player, Computer){
 
 function ModalHandler(ComputerChoice, WinLose){
   Modal.style.display = "block";
-  ModalTitle.textContent = "You " + WinLose + "!"
+  if(WinLose = "PlayerWin"){ModalTitle.textContent = "You Win!"}
+  else if(WinLose = "PlayerLose"){ModalTitle.textContent = "You Lose!"}
+  else {ModalTitle.textContent = "It's a Draw!"}
   ModalMessage.textContent = "The Computer chose " + ComputerChoice;
 }
 
